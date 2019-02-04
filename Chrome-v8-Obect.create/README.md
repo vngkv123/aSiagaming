@@ -1,2 +1,2 @@
-## Array.prototype.map
-* https://bugs.chromium.org/p/chromium/issues/detail?id=716044
+## Object.create Type-Confusion
+[TODO]
