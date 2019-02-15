@@ -19,7 +19,7 @@ Organization | Name
 ---------- | ---------
 [Google CTF 2018](./Chrome-v8-just-in-time/README.md) | Just-In-Time
 [34c3 CTF](./Chrome-v8-34c3_v9/README.md) | v9
-[Plaid CTF 2018](./Chrome-v8-821137/README.md) | v9
+[Plaid CTF 2018](./Chrome-v8-821137/README.md) | Roll a d8
 
 * S0rryMybad 
 * _tsuro
