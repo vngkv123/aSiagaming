@@ -3,15 +3,15 @@
 * Safari
 
 ## 1-day
-INFO | Credit | Tag
----------- | --------- | ---------
-[crbug-762874](./Chrome-v8-762874/README.md) | _tsuro | RCE
-[crbug-821137](./Chrome-v8-821137/README.md) | ??? | RCE
-[crbug-716044](./Chrome-v8-Array.prototype.map/README.md) | halbecaf | RCE
-[crbug-880207](./Chrome-v8-Math.expm1/README.md) | _tsuro | RCE
-[crbug-888923](./Chrome-v8-Object.create/README.md) | ??? | RCE
-[crbug-906043](./Chrome-v8-906043/README.md) | S0rryMybad | RCE
-[crbug-776677](./Chrome-v8-776677/README.md) | S0rryMybad | RCE
+INFO | Credit | Tag | Target
+---------- | --------- | --------- | ---------
+[crbug-762874](./Chrome-v8-762874/README.md) | _tsuro | RCE | Chrome
+[crbug-821137](./Chrome-v8-821137/README.md) | ??? | RCE | Chrome
+[crbug-716044](./Chrome-v8-Array.prototype.map/README.md) | halbecaf | RCE | Chrome
+[crbug-880207](./Chrome-v8-Math.expm1/README.md) | _tsuro | RCE | Chrome
+[crbug-888923](./Chrome-v8-Object.create/README.md) | ??? | RCE | Chrome
+[crbug-906043](./Chrome-v8-906043/README.md) | S0rryMybad | RCE | Chrome
+[crbug-776677](./Chrome-v8-776677/README.md) | S0rryMybad | RCE | Chrome
 
 ## CTF
 Organization | Name | Target
