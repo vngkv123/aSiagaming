@@ -12,6 +12,7 @@ INFO | Credit | Tag | Target
 [crbug-888923](./Chrome-v8-Object.create/README.md) | ??? | RCE | Chrome
 [crbug-906043](./Chrome-v8-906043/README.md) | S0rryMybad | RCE | Chrome
 [crbug-776677](./Chrome-v8-776677/README.md) | S0rryMybad | RCE | Chrome
+[webkit-190262](./Safari-JSC-190262/README.md) | lokihardt | RCE | Safari
 
 ## CTF
 Organization | Name | Target
@@ -25,6 +26,7 @@ Organization | Name | Target
 * S0rryMybad 
 * _tsuro
 * halbecaf
+* lokihardt
 
 ## Tag Info
 * Partial Read/Write
