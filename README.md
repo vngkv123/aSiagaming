@@ -14,11 +14,12 @@ INFO | Credit | Tag
 [crbug-776677](./Chrome-v8-776677/README.md) | S0rryMybad | RCE
 
 ## CTF
-Organization | Name
----------- | ---------
-[Google CTF 2018](./Chrome-v8-just-in-time/README.md) | Just-In-Time | RCE
-[34c3 CTF](./Chrome-v8-34c3_v9/README.md) | v9 | RCE
-[Plaid CTF 2018](./Chrome-v8-821137/README.md) | Roll a d8 | RCE
+Organization | Name | Target
+---------- | --------- | ---------
+[Google CTF 2018](./Chrome-v8-just-in-time/README.md) | Just-In-Time | Chrome
+[34c3 CTF](./Chrome-v8-34c3_v9/README.md) | v9 | Chrome
+[Plaid CTF 2018](./Chrome-v8-821137/README.md) | Roll a d8 | Chrome
+[Codegate 2019](./Safari-JSC-Codegate2019/README.md) | ButterFree | Safari
 
 ## Credit Info
 * S0rryMybad 
