@@ -22,7 +22,7 @@ Organization | Name | Target
 [Plaid CTF 2018](./Chrome-v8-821137/README.md) | Roll a d8 | Chrome
 [Codegate 2019](./Safari-JSC-Codegate2019/README.md) | ButterFree | Safari
 [35c3 CTF](./Safari-JSC-Webkid/README.md) | Webkid | Safari
-[RealWorld CTF](./Safari-JSC-RealWorldCTF/READMe.md) | Engine for Neophytes | Safari
+[RealWorld CTF](./Safari-JSC-RealWorldCTF/README.md) | Engine for Neophytes | Safari
 
 ## Credit Info
 * S0rryMybad 
