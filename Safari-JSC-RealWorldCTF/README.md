@@ -1,5 +1,4 @@
-# Patch
-# patch file  
+## Patch
 ```diff
 diff --git a/Source/JavaScriptCore/dfg/DFGAbstractInterpreterInlines.h b/Source/JavaScriptCore/dfg/DFGAbstractInterpreterInlines.h
 --- a/Source/JavaScriptCore/dfg/DFGAbstractInterpreterInlines.h
@@ -89,16 +88,16 @@ diff --git a/Source/WebKit/Shared/mac/ChildProcessMac.mm b/Source/WebKit/Shared/
 ```  
   
   
-# Build
+## Build
 
 I can't run this challenge binary set in my MacBook Pro, i just change Webkit source from current version and build it to exploit. I think we just need to exploit JavaScriptCore itself because Sandbox related code is removed in patch code, so sandbox escape is not needed.
 
-# Analysis
+## Analysis
 "GetPropertyEnumerator" opcode is most important part of this vulnerability.
 Because, "GetPropertyEnumerator" actually have side-effect, but in patch code, it remove "clobberWorld()" which means this operation is side-effect-free. So, in "GetPropertyEnumerator" operation, although we violate some previous type assumption, optimized code doesn't bailout.
 Using this vulnerability, we can make type confusion between unboxed double array and boxed(contiguous) array.
 
-# Webkit DFG Commit
+## Webkit DFG Commit
 * https://github.com/WebKit/webkit/commit/243a17dd57da84426316502c5346766429f2456d
 As above commit log showed, he said that this operation has side-effect, and give some test js code.
 Actually, i'm quite stucked in how to make some side effect code during "getPropertyEnumerator" operation.
