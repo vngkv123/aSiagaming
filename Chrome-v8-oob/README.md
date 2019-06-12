@@ -93,7 +93,7 @@ Simply add `Array.prototype.oob` method to existing V8 source code.
 
 Commit is quite recent one, so, using 1-day exploit is unfeasible.  
 
-Let's analyze vulnerabilit :)  
+Let's analyze the vulnerability :)  
 
 ## Vulnerability
 
