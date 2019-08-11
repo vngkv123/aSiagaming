@@ -2,7 +2,7 @@
 
 **Setting**
 
-Google used `depot_tools` to deploy their own project.
+Google used `depot_tools` to deploy their own projects.
 
 So, you need to install that. Refer the below one :)
 
@@ -22,7 +22,7 @@ ninja -C ./out.gn/x64.release
 
 
 
-I made simple vunlerable code which based on `starCTF 2019 OOB`.
+I made simple vunlerable code which is based on `starCTF 2019 OOB`.
 
 Apply this patch file :)
 
