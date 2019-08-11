@@ -16,6 +16,7 @@ INFO | Credit | Tag | Target
 [crbug-888923](./Chrome-v8-Object.create/README.md) | ??? | RCE | Chrome
 [crbug-906043](./Chrome-v8-906043/README.md) | S0rryMybad | RCE | Chrome
 [crbug-776677](./Chrome-v8-776677/README.md) | S0rryMybad | RCE | Chrome
+[crbug-926651](./Chrome-v8-926651/README.md) | Choongwoo Han | RCE | Chrome
 [webkit-190262](./Safari-JSC-190262/README.md) | lokihardt | RCE | Safari
 
 ## CTF
