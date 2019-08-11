@@ -2,6 +2,10 @@
 * Chrome
 * Safari
 
+## Tutorials
+----------
+[Tutorials](./Chrome-v8-tutorials/README.md)
+
 ## 1-day
 INFO | Credit | Tag | Target
 ---------- | --------- | --------- | ---------
