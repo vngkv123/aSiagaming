@@ -4,7 +4,13 @@
 
 ## Tutorials
 ----------
+  
+
+Simple V8 exploitation tutorial is here :)  
+
 [Tutorials](./Chrome-v8-tutorials/README.md)
+  
+  
 
 ## 1-day
 INFO | Credit | Tag | Target
@@ -29,6 +35,7 @@ Organization | Name | Target
 [Codegate 2019](./Safari-JSC-Codegate2019/README.md) | ButterFree | Safari
 [35c3 CTF](./Safari-JSC-Webkid/README.md) | Webkid | Safari
 [RealWorld CTF 2018](./Safari-JSC-RealWorldCTF/README.md) | Engine for Neophytes | Safari
+[RealWorld CTF 2019](./Safari-JSC-FastStructureCache/README.md) | FastStructureCache | Safari
 
 ## Credit Info
 * S0rryMybad 
