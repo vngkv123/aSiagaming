@@ -1,8 +1,13 @@
-function sleep( sleepDuration ){
+function sleep(sleepDuration) {
     var now = new Date().getTime();
     while(new Date().getTime() < now + sleepDuration){ /* do nothing */ } 
 }
+
 function gc() { for (let i = 0; i < 0x10; i++) { new ArrayBuffer(0x1000000); } }
+
+function log(msg) {
+	document.write(msg + "</br>");
+}
 
 var f64 = new Float64Array(1);
 var u32 = new Uint32Array(f64.buffer);
