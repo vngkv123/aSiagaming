@@ -15,6 +15,7 @@ Simple V8 exploitation tutorial is here :)
 ## 1-day
 INFO | Credit | Tag | Target
 ---------- | --------- | --------- | ---------
+[CVE-2021-38001](./Chrome-v8-1260577) | S0rryMybad (TianfuCup 2021) | RCE | Chrome
 [crbug-762874](./Chrome-v8-762874/README.md) | _tsuro | RCE | Chrome
 [crbug-821137](./Chrome-v8-821137/README.md) | ??? | RCE | Chrome
 [crbug-716044](./Chrome-v8-Array.prototype.map/README.md) | halbecaf | RCE | Chrome
